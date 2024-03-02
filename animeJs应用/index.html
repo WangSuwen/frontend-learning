@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            background: #000000;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .container .block {
+            position: absolute;
+            width: 5vw;
+            height: 5vw;
+            background: url('1.png') no-repeat;
+            background-size: 100vw auto;
+            /* background-size: cover; */
+            /* background-attachment: fixed; */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <script>
+        const container = document.querySelector('.container');
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 20; j++) {
+                let block = document.createElement('div');
+                block.style.left = (j * 5) + 'vw';
+                block.style.top  = (i * 5) + 'vw';
+                block.style.backgroundPosition = `-${j * 5}vw -${i * 5}vw`;
+                block.classList.add('block');
+                container.appendChild(block);
+            }
+        }
+        const blocks = document.querySelectorAll('.block');
+        let animation = anime.timeline({
+            targets: blocks,
+            easing: 'easeInOutExpo',
+            loop: true,
+            delay: anime.stagger(10, {start: 50})
+        });
+        animation.add({
+            scale: 0,
+            translateX: () => anime.random(360, 2100),
+            translateY: () => anime.random(360, -2100),
+            rotate: () => anime.random(-300, 360),
+            duration: () => anime.random(500, 3000),
+        }).add({
+            scale: 1,
+            translateX: 0,
+            translateY: 0,
+            rotate: 0,
+            duration: () => anime.random(500, 3000)
+        })
+    </script>
+</body>
+</html>
