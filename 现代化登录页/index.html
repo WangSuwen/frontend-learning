@@ -12,7 +12,7 @@
         <div class="login">
             <div class="loginBx">
                 <h2><i class="fa-solid fa-right-to-bracket"></i>Login<i class="fa-solid fa-heart"></i></h2>
-                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Username" id="123">
                 <input type="password" placeholder="Password">
                 <input type="submit" value="Sign in">
                 <div class="group">
@@ -22,5 +22,25 @@
             </div>
         </div>
     </div>
+    <script>
+        const inp = document.getElementById('input');
+        inp.oninput = inInput;
+        function inInput (e) {
+            let val = e.target.value;
+            if (/[^\.\d]/.test(val)) {
+                val = val.replace(/[^\.\d]/g, '');
+            }
+            if (/^0\.\d*$/.test(val)) {
+                inp.value = val;
+            } else if (+val < 0 || /^0\.{2,}\d*$/.test(val)) {
+                inp.value = '';
+            } else if (+val > 1) {
+                inp.value = 1;
+            } else {
+                inp.value = val === '' ? val : Number(val);
+            }
+            console.log(inp.value);
+        }
+    </script>
 </body>
 </html>
