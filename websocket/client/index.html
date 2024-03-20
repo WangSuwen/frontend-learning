@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="b1">0</h1>
+    <button onclick="btn1()">button01</button>
+    <h1 id="b2">1</h1>
+    <button onclick="btn2()">button02</button>
+
+    <h1 id="real-time"></h1>
+
+    <script>
+        const socket = io('http://localhost:3000');
+        const b1 = document.getElementById('b1');
+        const b2 = document.getElementById('b2');
+        const realTime = document.getElementById('real-time');
+
+        // client-side
+        socket.on("connect", () => {
+            console.log('链接成功：', socket.id); // x8WIv7-mJelg7on_ALbx
+        });
+
+        socket.on("disconnect", () => {
+            console.log('已断开链接---', socket.id); // undefined
+        });
+        // 监听服务端发送过来的不同的消息ID
+        socket.on('message-01', (data) => {
+            b1.innerText = data;
+        })
+        socket.on('message-02', (data) => {
+            b2.innerText = data;
+        })
+        socket.on('real-time', (data) => {
+            realTime.innerText = new Date(data);
+        })
+
+        // 向服务器发送不同的消息ID
+        function btn1 () {
+            socket.emit('message-01', b1.innerText);
+        }
+        function btn2 () {
+            socket.emit('message-02', b2.innerText);
+        }
+    </script>
+    <!-- <script src="./index.js"></script> -->
+</body>
+</html>
