@@ -27,8 +27,9 @@ io.on('connection', client => {
     console.log('客户端已连接：', client.id);
     client.on('disconnect', () => {
         console.log('客户端断开连接')
+        clearInterval(interval);
     });
-
+    let interval;
     // 监听客户端发送过来的不同的消息ID
     client.on(m1, data => {
         // 向客户端发送不同的消息ID
@@ -37,8 +38,9 @@ io.on('connection', client => {
     client.on(m2, data => {
         client.emit(m2, +data + 2);
     })
-    setInterval(()  => {
+    interval = setInterval(()  => {
         client.emit('real-time', Date.now());
+        console.log(1);
     }, 1000);
 });
 app.get('/', (req, res) => {
