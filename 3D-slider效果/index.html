@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>3D-Slider</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box" style="--imgCount: 5">
+            <div class="card" style="--i:1">
+                <div class="imgBox">
+                    <img src="../无js实现slider效果/images/img1.jpeg" alt="" srcset="">
+                </div>
+                <h2>
+                    图片描述<br>
+                    <span>图片1</span>
+                </h2>
+            </div>
+            <div class="card" style="--i:2">
+                <div class="imgBox">
+                    <img src="../无js实现slider效果/images/img2.jpeg" alt="" srcset="">
+                </div>
+                <h2>
+                    图片描述<br>
+                    <span>图片2</span>
+                </h2>
+            </div>
+            <div class="card" style="--i:3">
+                <div class="imgBox">
+                    <img src="../无js实现slider效果/images/img3.jpeg" alt="" srcset="">
+                </div>
+                <h2>
+                    图片描述<br>
+                    <span>图片3</span>
+                </h2>
+            </div>
+            <div class="card" style="--i:4">
+                <div class="imgBox">
+                    <img src="../无js实现slider效果/images/img4.jpeg" alt="" srcset="">
+                </div>
+                <h2>
+                    图片描述<br>
+                    <span>图片4</span>
+                </h2>
+            </div>
+            <div class="card" style="--i:5">
+                <div class="imgBox">
+                    <img src="../无js实现slider效果/images/img5.jpeg" alt="" srcset="">
+                </div>
+                <h2>
+                    图片描述<br>
+                    <span>图片5</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="btns">
+        <div class="prev"></div>
+        <div class="next"></div>
+    </div>
+    <script>
+        let prev = document.querySelector('.prev');
+        let next = document.querySelector('.next');
+        let box = document.querySelector('.box');
+        let degree = 0;
+        const degreeInterval = 360 / 5;
+        prev.addEventListener('click', function(){
+            degree += degreeInterval;
+            box.style.transform = `perspective(1000px) rotateY(${degree}deg)`;
+        });
+        next.addEventListener('click', function(){
+            degree -= degreeInterval;
+            box.style.transform = `perspective(1000px) rotateY(${degree}deg)`;
+        });
+    </script>
+</body>
+</html>
