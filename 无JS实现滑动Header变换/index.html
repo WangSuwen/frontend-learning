@@ -38,10 +38,66 @@
             height: 200vh;
             background-color: deeppink;
         }
+        .grow {
+            width: 100vw;
+            height: 80px;
+            overflow: hidden;
+        }
+        .text-content {
+            /* border: 1px solid #000; */
+            height: 100%;
+            width: 200px;
+            position: relative;
+            animation: grow 10s infinite ease-out ;
+            animation-delay: 4.5s;
+        }
+        @keyframes grow {
+            0% {
+                transform: translateY(0);
+            }
+            5% {
+                transform: translateY(-80px);
+            }
+            50% {
+                transform: translateY(-80px);
+            }
+            55% {
+                transform: translateY(-155px);
+            }
+            100% {
+                transform: translateY(-155px);
+            }
+        }
+        .text-content div {
+            position: absolute;
+            z-index: 10000;
+            height: 80px;
+            line-height: 80px;
+            width: 100%;
+            text-align: center;
+            color:aqua;
+        }
+        .text-2-up {
+            top: 0px;
+        }
+        .text-1 {
+            top: 80px;
+        }
+        .text-2-down {
+            top: 160px;
+        }
     </style>
 </head>
 <body>
     <div class="header">标题头</div>
-    <div class="content"></div>
+    <div class="content">
+        <div class="grow">
+            <div class="text-content">
+                <div class="text-2-up">文字2</div>
+                <div class="text-1">文字1</div>
+                <div class="text-2-down">文字2</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
