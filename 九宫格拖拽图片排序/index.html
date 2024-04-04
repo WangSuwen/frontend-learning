@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="drag" id="drag">
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block1" style="--img: url(../images/img1.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block2" style="--img: url(../images/img2.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block3" style="--img: url(../images/img3.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block4" style="--img: url(../images/img4.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block5" style="--img: url(../images/img5.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block6" style="--img: url(../images/img6.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block7" style="--img: url(../images/img7.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block8" style="--img: url(../images/img8.jpg)"></div>
+        </div>
+        <div class="dragBox">
+            <div ondragstart="drag(event)" class="images" draggable="true" id="block9" style="--img: url(../images/img9.jpg)"></div>
+        </div>
+    </div>
+    <div class="board">
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    </div>
+    <button class="reset" onclick="window.location.reload()">reset</button>
+    <script>
+
+        function drag (event) {
+            event.dataTransfer.setData('text', event.target.id);
+        }
+        function allowDrop (event) {
+            event.preventDefault();
+        }
+        function drop (event) {
+            event.preventDefault();
+            let data = event.dataTransfer.getData('text');
+            event.target.appendChild(document.getElementById(data));
+        }
+        onload = () => {
+            let parent = document.getElementById('drag');
+            /* 
+                创建文档DOM片段，默认放在内存中，所以下面代码中：
+                frag.appendChild(parent.children[Math.floor(Math.random() * parent.children.length)]);
+                的操作并不会导致DOM重排，因为此时frag是在内存中，而非dom树上，知道while 结束后，将frag append到parent中，才会将他们
+                重新渲染后dom中。
+            */
+            let frag = document.createDocumentFragment();
+            while (parent.children.length) {
+                frag.appendChild(parent.children[Math.floor(Math.random() * parent.children.length)]);
+            }
+            parent.appendChild(frag);
+        }
+    </script>
+</body>
+</html>
