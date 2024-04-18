@@ -60,3 +60,6 @@ body {
     height: 100px;
     background-color: #0003;
 }
+.active {
+    background-color: purple;
+}

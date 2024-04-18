@@ -37,19 +37,24 @@
         </div>
     </div>
     <div class="board">
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-        <div class="dropBox" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div class="dropBox" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
     </div>
     <button class="reset" onclick="window.location.reload()">reset</button>
     <script>
-
+        function dragEnter (event) {
+            event.target.classList.add('active');
+        }
+        function dragLeave (event) {
+            event.target.classList.remove('active');
+        }
         function drag (event) {
             event.dataTransfer.setData('text', event.target.id);
         }
