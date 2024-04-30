@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .drop-content {
+            min-width: 150px;
+            min-height: 100px;
+            border-style: dotted;
+        }
+        .active {
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div class="drop-content" ondragenter="dragenter(event)" ondragleave="dragleave(event)" ondragover="dragover(event)" ondrop="drop(event)"></div>
+    <div id="fileContent"></div>
+    <script>
+        const dropContent = document.querySelector('.drop-content');
+        function dragenter (event) {
+            dropContent.classList.add('active');
+        }
+        function dragleave (event) {
+            dropContent.classList.remove('active');
+        }
+        function drop (event) {
+            event.preventDefault();
+            const file = event.dataTransfer.files[0];
+
+            // FileReader
+            const fr = new FileReader();
+           /*  fr.readAsArrayBuffer(file);
+            fr.onload = function () {
+                const result = fr.result;
+                document.getElementById('fileContent').appendChild(document.createTextNode(result));
+            } */
+
+            const slice = file.slice(0, 4);
+            fr.readAsArrayBuffer(slice);
+            fr.onload = function () {
+                const result = fr.result;
+                const view = new DataView(result);
+                const magic = view.getUint32(0, false); // 以高位优先字节顺序读取4个字节
+                switch (magic) {
+                    case 0x89504E47: file.verify_type = 'image/png'; break; 
+                    case 0xffd8ffe0: file.verify_type = 'image/jpeg'; break; 
+                    case 0x47494638: file.verify_type = 'image/gif'; break; 
+                    case 0x25504446: file.verify_type = 'application/pdf'; break; 
+                    case 0x504b0304: file.verify_type = 'application/zip'; break; 
+                }
+                console.log(file.name, file.verify_type);
+            }
+            
+            // 创建ObjectURL
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.style.width = '400px';
+            dropContent.appendChild(img);
+            dropContent.classList.remove('active');
+        }
+        function dragover (event) {
+            event.preventDefault();
+        }
+
+
+
+    </script>
+</body>
+</html>

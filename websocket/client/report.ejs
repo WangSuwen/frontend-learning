@@ -1,0 +1,563 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>检测报告</title>
+  <style type="text/css">
+   html,body{
+        font-size: 18pt;
+        line-height: 1.5;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: '宋体', songti;
+    }
+    .page {
+        position: relative;
+        /* width: 210mm;
+        height: 297mm; */
+        background-color: white;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        box-sizing: border-box;
+        padding: 20mm;
+        page-break-after: always; /* 在每个页面后添加分页 */
+        page-break-before: avoid;
+    }
+
+    @media print {
+        .page {
+            margin: 0;
+            box-shadow: none;
+        }
+    }
+	.page-number {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+      }
+    /* 第二页竖屏展示 */
+    /* @media screen and (min-width: 841px) and (max-width: 1189px) { */
+    .landscape-parent{
+        position: relative;
+        width: 210mm;
+        height: 297mm;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 20mm;
+        page-break-after: always; /* 在每个页面后添加分页 */
+        page-break-before: avoid;
+    }
+    .landscape {
+        position: absolute;
+        left: -20mm;
+        top: 63mm;
+        transform: rotate(90deg);
+        transform-origin: 50% 50%;
+        width: 257mm;
+        height: 170mm;
+    }
+    /* } */
+
+    .fz-14{
+        font-size: 14pt;
+    }
+    .fz-13{
+        font-size: 13pt;
+    }
+    .fz-12{
+        font-size: 12pt;
+    }
+    .fz-10{
+        font-size: 10pt;
+    }
+    .center{
+        text-align: center;
+    }
+    .title{
+        line-height: 1.5;
+        margin: 0px;
+        font-size: 18pt;
+    }
+    .fl{
+        float:left;
+    }
+    .fr{
+        float:right;
+    }
+    p{
+        margin: 0;
+    }
+    .block-center{
+        margin: 0 auto;
+    }
+    .border-table{
+        border: 1pt solid black;
+        border-collapse: collapse;
+        font-size: 8pt;
+        width: 100%;
+    }
+    .border-table td{
+        height: 30px;
+        padding: 5pt;
+        border: 1pt solid black;
+        border-collapse: collapse;
+        font-size: 8pt;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+    .border-table td div{
+        font-size: 8pt;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+    .content-center{
+        text-align: center;
+    }
+    .img-2{
+        display: block;
+        margin: 0 auto;
+        width: 400px;
+        height: 400px;
+    }
+    .lh-32{
+        line-height: 2.4;
+    }
+    .zhinanzhen{
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: 20px;
+        right: 20px;
+    }
+    .tuli{
+        position: absolute;
+        width: 160px;
+        height: 180px;
+        bottom: 0px;
+        right: 0px;
+        border-top: 1px solid #555;
+        border-left: 1px solid #555;
+    }
+    .border{
+        border: 1px solid #555;
+    }
+    .project-table td{
+        font-size: 9pt;
+    }
+    .loc-desc{
+        position:absolute;
+        width: 80%;
+        left: 10px;
+        bottom: 10px;
+		z-index: 10000;
+        /* background-color: rgba(0,0,0,0.2); */
+    }
+    .loc-desc .loc-title{
+        /* background-color: rgba(0,11,255,0.8); */
+        color: #fff;
+        font-weight: bold;
+        text-align: left;
+        font-size: 10pt;
+        line-height: 1.4;
+    }
+    .loc-desc .loc-info{
+        color: #fff;
+        font-size: 9pt;
+        line-height: 1.4;
+        text-align: left;
+        padding: 5px 10px;
+    }
+    .flexbox{
+        display: flex;
+    }
+    .flex{
+        flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+    <!---pag 1--->
+	<%if(!noPager){%>
+    <div class="page">
+        <div style="margin-top: 50px">
+            <p class="center title">核工业北京地质研究院分析测试研究中心</p>
+            <p class="center title">核工业地质分析测试研究中心</p>
+        </div>
+        <h1 class="center" style="letter-spacing: 10pt; font-size: 34pt;font-weight: normal;">检测报告</h1>
+        <table style="border-top: 3pt solid black;border-bottom: 3pt solid black;width: 100%;margin: 0 auto;">
+            <tr>
+                <td style="height: 50pt; font-size: 14pt;width: 140px;text-align: right;">报告编号：</td>
+                <td style="height: 50pt; font-size: 14pt;"><%= reportNo %></td>
+            </tr>
+            <tr>
+                <td style="height: 50pt; font-size: 14pt;width: 140px;text-align: right;">项目名称：</td>
+                <td style="height: 50pt; font-size: 14pt;"><%= stationName %>基站电磁辐射环境检测项目</td>
+            </tr>
+            <tr>
+                <td style="height: 50pt; font-size: 14pt; vertical-align: top;width: 140px;text-align: right;">委托单位：</td>
+                <td style="height: 50pt; font-size: 14pt;vertical-align: top;">
+                    <% testCompanys.forEach(function(item, idx){ %>
+                    <div><%= item.companyName %> </div>
+                    <% }); %>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 50pt; font-size: 14pt;width: 140px;text-align: right;">检测项目：</td>
+                <td style="height: 50pt; font-size: 14pt;">射频选频电磁场（功率密度）</td>
+            </tr>
+            <tr>
+                <td style="height: 50pt; font-size: 14pt;width: 140px;text-align: right;">检测类别：</td>
+                <td style="height: 50pt; font-size: 14pt;">委托检测</td>
+            </tr>
+        </table>
+        <div style="overflow: hidden">
+            <div class="fl fz-13" style="line-height: 3;">
+                <span style="display: inline-block;vertical-align: middle;">报告签发人：</span>
+                <img style="display: inline-block;vertical-align: middle;" src="<%= issue %>" width="90px" height="50px" alt="报告签发人" />
+            </div>
+            <div class="fr fz-13" style="line-height: 3;">
+                签发日期：<%= issueTime %>
+            </div>
+        </div>
+    </div>
+    <!---pag 1-1--->
+    <div class="page">
+        <p class="center fz-14" style="text-align: center;font-weight: bold;margin-bottom: 10pt;">注意事项</p>
+        <div>
+            <p class="fz-13 lh-32">1.报告无“测试专用章”或测试中心公章无效。
+            <p class="fz-13 lh-32">2.复制报告未重新加盖“测试专用章”或测试中心公章无效。</p>
+            <p class="fz-13 lh-32">3.报告无审核人、报告签发人签字无效。</p>
+            <p class="fz-13 lh-32">4.对报告若有异议，应于收到报告之日起十五日内向本中心提出。</p>
+            <p class="fz-13 lh-32">5.一般情况下，报告仅对来样负责。</p>
+            <p class="fz-13 lh-32">6.依照有关规定，原始记录在本中心只保存六年。</p>
+            <p class="fz-13 lh-32">7.报告中标注*符号的检测项目不在CMA认证和CNAS认可范围之内。</p>
+        </div>
+        <div style="margin-top: 50pt">
+            <div class="fz-13 lh-32 flexbox">
+                <div>单位名称：</div>
+                <div class="flex">核工业北京地质研究院分析测试研究中心（核工业地质分析测试研究中心）</div>
+            </div>
+            <div class="fz-13 lh-32">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：北京市安外小关东里10号院</div>
+            <div class="fz-13 lh-32">通&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信：北京9818信箱5分箱</div>
+            <div class="fz-13 lh-32">邮证编码：100029</div>
+            <div class="fz-13 lh-32">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：（010）64980696</div>
+            <div class="fz-13 lh-32">传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真：（010）64917172</div>
+        </div>
+    </div>
+	<%}%>
+    <!---pag 2--->
+    <div class="page">
+    <!---基本数据--->
+        <div class="center" style="font-size: 22pt;letter-spacing: 10pt;">检测报告</div>
+        <p class="fz-13" style="margin-bottom: 10pt;">报告编号：<%= reportNo %></p>
+        <table class="border-table block-center project-table">
+            <tr>
+                <td class="center" style="width: 15%;">检测项目</td>
+                <td colspan="3"><%= stationName %>基站电磁辐射环境检测项目</td>
+            </tr>
+            <tr>
+                <td class="center">委托单位</td>
+                <td colspan="3">
+                    <% testCompanys.forEach(function(item){ %>
+                        <div><%= item.companyName %></div>
+                    <% }); %>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">委托单位地址</td>
+                <td colspan="3">
+                    <% testCompanys.forEach(function(item){ %>
+                        <div><%= item.address %></div>
+                    <% }); %>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">委托人</td>
+                <td style="width: 35%;">
+                    <% testCompanys.forEach(function(item){ %>
+                        <div><%= item.contactMan %></div>
+                    <% }); %>
+                </td>
+                <td class="center" style="width: 15%;">联系方式</td>
+                <td style="width: 35%;">
+                    <% testCompanys.forEach(function(item){ %>
+                        <div><%= item.contactPhone %></div>
+                    <% }); %>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">检测类别</td>
+                <td>委托检测</td>
+                <td class="center">检测方式</td>
+                <td>现场检测</td>
+            </tr>
+            <tr>
+                <td class="center">委托日期</td>
+                <td colspan="3"><%= publishDate %></td>
+            </tr>
+            <tr>
+                <td class="center">检测日期</td><td colspan="3"><%= testDate %></td>
+            </tr>
+            <tr>
+                <td class="center">检测环境</td>
+                <td colspan="3" colspan="3">
+                    <div>检测时间： <%= startTime %>~<%= endTime %></div>
+                    <div>天气：<%= weather %>   温度：<%= tempuature %>℃  湿度：<%= wetness %>%RH</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">检测地点</td><td colspan="3"><%= testAddress %></td>
+            </tr>
+            <tr>
+                <td class="center">检测依据</td>
+                <td colspan="3">
+                    <div>（1）《5G移动通信基站电磁辐射环境监测方法（试行）》（HJ 1151-2020）</div>
+                    <div>（2）《辐射环境保护管理导则 电磁辐射监测仪器和方法》（HJ/T10.2-1996）</div>
+                    <div>（3）《电磁环境控制限值》（GB8702-2014）</div>
+                    <div>（4）《辐射环境保护管理导则-电磁辐射环境影响评价方法与标准》（HJ/T10.3-1996）</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">主要仪器名称、型号、编号</td>
+                <td colspan="3">
+                    <div>仪器设备名称：<%= device.name %></div>
+                    <div>主机型号 /主机编号： <%= device.mainDevice.type %>/<%= device.mainDevice.no %></div>
+                    <div>探头型号 / 探头编号： <%= device.camera.type %>/<%= device.camera.no %></div>
+                    <div>校准机构 / 校准日期 / 校准证书编号： <%= device.mainDevice.calibrationInstitution %>/<%= device.mainDevice.calibrationTerm %>/<%= device.mainDevice.calibrationCertificateNo %></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">仪器主要技术指标</td>
+                <td colspan="3">
+                    <div>测量范围： <%= device.testRange %></div>
+                    <div>频率范围： <%= device.frequenceRange %></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="center">检测结论</td>
+                <td colspan="3">由检测结果可知，<%= stationName %>基站电磁辐射各检测点位的射频功率密度范围值为（<%= result %>）。</td>
+            </tr>
+            <tr>
+                <td class="center">备注</td>
+                <td colspan="3">《电磁环境控制限值》（GB8702-2014）中公众曝露控制限值为：30MHz-3000MHz射频功率密度40μW/c㎡。3000MHz-15000MHz射频功率密度f/75μW/c㎡的要求。</td>
+            </tr>
+        </table>
+        <div style="overflow: hidden;margin-top: 14pt;margin-bottom: 5pt;">
+            <div class="fl fz-12">
+                <span style="display: inline-block;vertical-align: middle;">监测人：</span>
+                <img style="display: inline-block;vertical-align: middle;" src="<%= establishment %>" width="90px" height="50px" alt="编制人"/>
+            </div>
+            <div class="fr fz-12" style="width: 190px">
+                <span style="display: inline-block;vertical-align: middle;">审核人：</span>
+                <img style="display: inline-block;vertical-align: middle;" src="<%= reviewer %>" width="90px" height="50px" alt="审核人"/>
+            </div>
+        </div>
+        <div style="overflow: hidden;">
+            <div class="fl fz-12"><%= establishmentTime %></div>
+            <div class="fr fz-12"><%= reviewerTime %></div>
+        </div>
+    </div>
+    <!---pag 3 检测数据 ---->
+    <%
+        const resultTable = [];
+        resultTable.push({
+            "addressDesc": "v",
+            "distance": {
+                "h": '',
+                "v": ''
+            },
+            "device": {
+                "type": '',
+                "number":''
+            },
+            "applications": [],
+            "operator": [
+                {},
+                {},
+                {}
+            ]
+        });
+        const resultTables = resultTable.reduce((t, c, index)=>{
+            c.serialIndex = index+1;
+            if(t.length===0){
+                t.push([c]);
+            }else{
+                const last = t[t.length-1];
+                const lastLength = last.reduce((t1, c1)=>t1+c1.operator.length, 0);
+                if(lastLength+c.operator.length<=17){
+                    last.push(c);
+                }else{
+                    t.push([c]);
+                }
+            }
+            return t;
+        }, []);
+    %>
+    <% resultTables.forEach(resultTable=>{%>
+        <div class="landscape-parent">
+            <div class="landscape">
+                <div class="center" style="font-size: 22pt;letter-spacing: 10pt;">检测报告</div>
+                <p class="fz-13" style="margin-bottom: 10pt;">报告编号：<%= reportNo %></p>
+                <table class="border-table content-center project-table" style="width: 100%;">
+                    <thead>
+                        <tr><td colspan="11" style="background-color: #ccc;text-align:center;font-size:12pt;">检测结果</td></tr>
+                        <tr>
+                            <td rowspan="2" style="width: 20pt">序号</td>
+                            <td rowspan="2">检测点位描述</td>
+                            <td colspan="2" style="width: 20%">与天线的距离（m）</td>
+                            <td colspan="2" style="width: 20%">发射天线</td>
+                            <td colspan="2" style="width: 14%">5G终端设备</td>
+                            <td rowspan="2" style="width: 10%">应用场景</td>
+                            <td rowspan="2" style="width: 10%"><div>功率密度</div>（μW/c㎡）</td>
+                            <td rowspan="2" style="width: 10%"><div>占标比</div>（%）</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">垂直</td>
+                            <td style="width: 10%">水平</td>
+                            <td style="width: 7%">运营商</td>
+                            <td style="width: 13%">下行频段（MHz）</td>
+                            <td style="width: 9%">型号</td>
+                            <td style="width: 5%">数量</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!----循环输出数据-->
+                    <% resultTable.forEach(function(item, idx){ %>
+                        <% item.operator.forEach(function(el, i){ %>
+                            <% if ( i === 0 ){ %>
+                            <tr>
+                                <td rowspan="<%= item.operator.length %>" style="vertical-align: middle;"><%= item.serialIndex %></td> <!----序号-->
+                                <td rowspan="<%= item.operator.length %>" style="vertical-align: middle;"><%= item.addressDesc %></td> <!----点位描述-->
+                                <td rowspan="<%= item.operator.length %>" style="vertical-align: middle;"><%= item.distance.v %></td> <!----垂直-->
+                                <td rowspan="<%= item.operator.length %>" style="vertical-align: middle;"><%= item.distance.h %></td> <!----水平-->
+                                <td><%= el.name %></td> <!----运营商-->
+                                <td><%= el.downloadVolume %></td> <!----下行频率-->
+                                <% if ( idx === 0 ){ %>
+                                    <td rowspan="<%= resultTableLength %>" style="vertical-align: middle;"><%= item.device.type %></td> <!----型号-->
+                                    <td rowspan="<%= resultTableLength %>" style="vertical-align: middle;"><%= item.device.number %></td> <!----数量-->
+                                    <td rowspan="<%= resultTableLength %>" style="vertical-align: middle;">
+                                        <div>
+                                            <% item.applications.forEach(function(ell){ %>
+                                                <div><%= ell %></div>
+                                            <% }) %>
+                                        </div>
+                                    </td> <!----应用场景-->
+                                <% } %>
+                                <td><%= el.powerVolume %></td> <!----功率密度-->
+                                <td><%= el.occupancyRatio %></td> <!----占标比-->
+                            </tr>
+                            <% } else { %>
+                            <tr>
+                                <td><%= el.name %></td> <!----运营商-->
+                                <td><%= el.downloadVolume %></td> <!----下行频率-->
+                                <td><%= el.powerVolume %></td> <!----功率密度-->
+                                <td><%= el.occupancyRatio %></td> <!----占标比-->
+                            </tr>
+                            <% }; %>
+                        <% }) %>
+                    <% }); %>
+                    <tr>
+                        <td colspan="3">
+                            <p style="text-decoration: underline;">以下正文空白</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <%})%>
+
+    <!---pag 4--->
+    <div class="page">
+    <!---检测点位示意图--->
+        <div class="center" style="font-size: 22pt;letter-spacing: 10pt;">检测报告</div>
+        <p class="fz-13" style="margin-bottom: 10pt;">报告编号：<%= reportNo %></p>
+        <table class="border-table content-center block-center">
+            <tr>
+                <td>
+                    <div style="position: relative" class="border">
+                        <img src="<%= reportTestPointImage %>" width="100%" style="display: block;"/>
+                        <img src="data:image/jpeg;base64,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" class="zhinanzhen" />
+                        <img class="tuli" src="data:image/jpeg;base64,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" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p class="center" style="font-size:10.5pt">图1<%= stationName %>基站电磁辐射环境检测点位示意图</p>
+    </div>
+
+    <!---pag 5--->
+    <div class="page">
+        <!---检测点位监测频谱图--->
+        <div class="center" style="font-size: 22pt;letter-spacing: 10pt;">检测报告</div>
+        <p class="fz-13" style="margin-bottom: 10pt;">报告编号：<%= reportNo %></p>
+        <table class="border-table content-center block-center">
+            <thead style="background-color: #ccc;">
+                <tr style="background-color: #ccc"><td class="center" style="font-size:12pt;">图2<%= stationName %>检测点位检测频谱分布图</td></tr>
+            </thead>
+            <tbody>
+                <% reportTestSpectrumMapImages.forEach(function(item, idx){ %>
+                <tr>
+                    <td>
+                        <img src="<%= item %>" width="100%"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-size: 10pt;"><%= idx+1 %>#检测点位</td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <!---pag 6--->
+    <div class="page">
+        <!---检测点位现场图--->
+        <div class="center" style="font-size: 22pt;letter-spacing: 10pt;">检测报告</div>
+        <p class="fz-13" style="margin-bottom: 10pt;">报告编号：<%= reportNo %></p>
+        <table class="border-table content-center block-center">
+            <thead style="background-color: #ccc;">
+                <tr style="background-color: #ccc">
+                    <td colspan="2" class="center" style="font-size:12pt;">图3<%= stationName %>基站电磁辐射环境现场照片</td>
+                </tr>
+            </thead>
+            <tbody>
+            <% reportSenceImages.forEach(function(item, idx, arr){ %>
+                <% if ( idx%2 === 0 ){ %>
+                <tr>
+                <% } %>
+                    <td style="width: 50%;padding:0">
+                        <div style="position:relative;width:280px;margin: 0 auto;padding: 10px;">
+                            <img src="<%= item.image %>" style="display: block;width: 280px;height: 280px;margin: 0 auto;" />
+                            <div class="loc-desc">
+                                <div class="loc-title">
+                                    <%= stationName %><%= idx <= 1 ? '基站' + (idx === 0 ? '近景' : '远景') : '基站-' + idx + '#测点' %>
+                                </div>
+                                <div class="loc-info">
+                                    <div>检测时间：<%= item.date %></div>
+                                    <div class="flexbox">
+                                        <div>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</div>
+                                        <div class="flex"><%= item.location %></div>
+                                    </div>
+                                    <div>经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：<%= item.lng %></div>
+                                    <div>纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：<%= item.lat %></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center" style="font-size: 10.5pt;height: 22pt;line-height: 22pt;text-align: center;border-top: 1px solid #000;">
+                            基站
+                            <%= idx > 1 ?  '-' + idx + '#监测点' : '' %>
+                        </div>
+                    </td>
+                <% if( idx%2 === 1 ){ %>
+                </tr>
+                <% } %>
+            <% }); %>
+            </tbody>
+        </table>
+        <p style="text-decoration: underline;">以下正文空白</p>
+    </div>
+</body>
