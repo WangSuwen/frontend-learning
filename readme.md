@@ -33,3 +33,21 @@ drop-shadow:就符合真实世界的投影，非透明的颜色，我就有投�
 `rotate` 旋转默认是以Z轴（垂直于屏幕的轴）为中心，元素自己所在位置为圆心进行旋转；
 `transform-origin: 100px; `
 `transform-origin` 属性允许你改变被转换元素的圆心位置。上面示例表示将旋转圆心向右移动100px，所以元素旋转时就不在以自己为圆心了，而是以自己自有圆心向右移动100px的点为圆心，可以理解为：此时元素的旋转轨迹是：以元素右边100px位置处为圆心，100px为半径的圆弧
+
+* `offsetTop` 
+> offsetTop 属性可以获取元素相对于其 offsetParent 元素的顶部的距离。
+
+* `offsetLeft` 
+> offsetLeft 属性可以获取元素相对于其 offsetParent 元素的左侧的距离。
+
+* `offsetParent`
+> offsetParent 属性可以获取元素的定位父元素。
+
+*_所谓的 offsetParent 元素_*
+> 就是指离当前元素最近的、并且 CSS 的 position 属性不等于 static 的父元素。
+
+* `offsetWidth`
+> offsetWidth 属性可以获取元素的宽度，包括元素的内边距、边框和外边距。
+
+* `offsetHeight`
+> offsetHeight 属性可以获取元素的高度，包括元素的内边距、边框和外边距。
