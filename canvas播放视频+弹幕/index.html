@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #c2 {
+          background-image: url(foo.png);
+          background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body id="body">
+	<video style="width: 250px; height: 100px;" loop src="./111.mp4" controls id="video"></video>	
+    <div>
+        <canvas id="c1" width="820" height="492"></canvas>
+    </div>
+    <p>
+        <input type="text">
+        <button id="submit">提交</button>
+    </p>
+</body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+	
+		canvasDrawVideo.onLoad('c1')
+        $('#submit').click(function() {
+            var data = $('input').val()
+            Event.trigger('data', {
+                value: data,
+            })
+        })
+        /* setTimeout(() => {
+            Event.trigger('data', {
+                value: 123,
+            })
+            $('#submit').click()
+        }, 3000); */
+    </script>
+</html>
