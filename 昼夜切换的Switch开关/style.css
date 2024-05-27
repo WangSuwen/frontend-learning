@@ -1,0 +1,230 @@
+body {
+	background: rgb(202, 202, 202);
+}
+
+.switch {
+	width: 350px;
+	height: 160px;
+	border-radius: 100px;
+	margin: 30px auto;
+	position: relative;
+	cursor: pointer;
+	box-shadow: 0px 3px 2px 0px #848484;
+	transition: all 0.7s;
+	overflow: hidden;
+}
+
+.switch.off {
+	background: #14101c;
+}
+
+.switch.on {
+	background: #f7f0f3;
+}
+
+.switch .handler {
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	top: 20px;
+	transition: all 0.7s;
+	z-index: 10;
+}
+
+.switch .handler:before {
+	content: '';
+	display: inline-block;
+	transition: all 0.7s;
+	position: absolute;
+}
+
+.switch.off .handler {
+	left: 20px;
+	background: radial-gradient(#fffffc, #edff63);
+	border-radius: 100%;
+	box-shadow: 0 0 5px #f3ff96;
+}
+
+.switch.off .handler:before {
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	background: #14101c;
+	top: -2%;
+	left: 25%;
+}
+
+.switch.on .handler {
+	left: calc(100% - 140px);
+	background: linear-gradient(120deg, #ffa60f, #febd4f);
+	border-radius: 100%;
+	box-shadow: 0 0 10px #feb334;
+}
+
+.switch.on .handler:before {
+	width: 0;
+	background: linear-gradient(120deg, #ffa60f, #febd4f);
+	height: 0;
+	top: 25%;
+	left: 70%;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.switch.on .scenery.night {
+	right: -100%;
+	bottom: -100%;
+	opacity: 0;
+}
+
+.switch.on .scenery.night:after {
+	left: -50px;
+	top: -50px;
+}
+
+.switch.off .scenery.night {
+	right: 0;
+	bottom: 0;
+}
+
+.switch.off .scenery.day {
+	left: -100%;
+	bottom: -100%;
+	opacity: 0;
+}
+
+.switch.off .scenery.day:after {
+	left: -50px;
+	top: -50px;
+}
+
+.switch.on .scenery.day {
+	left: 0;
+	bottom: 0;
+}
+
+.scenery {
+	opacity: 1;
+	transition: all 0.7s;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.scenery span {
+	display: inline-block;
+	position: absolute;
+}
+
+.scenery:after {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background: #938753;
+	border-radius: 50%;
+	left: 15px;
+	top: -15px;
+	transition: all 0.7s;
+}
+
+.dots {
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border-radius: 50%;
+	right: 23%;
+	top: 38%;
+	z-index: 3;
+}
+
+.dots:after {
+	content: '';
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border-radius: 50%;
+	right: 200%;
+	top: -185%;
+	position: absolute;
+}
+
+.dots:before {
+	content: '';
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	background: #fff;
+	border-radius: 50%;
+	right: -45%;
+	top: -295%;
+	position: absolute;
+}
+
+.bubble {
+	width: 160px;
+	height: 160px;
+	background: linear-gradient(110deg, #ffffff85, #19920c9e);
+	border-radius: 50%;
+	right: -16px;
+	bottom: -18px;
+	box-shadow: 0 0 18px #d7ffd3fa, inset 0 0 18px #84ff7759;
+	z-index: 2;
+}
+
+.bubble:after {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	width: 65px;
+	height: 115px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 50%;
+	right: 71px;
+	bottom: -50px;
+	z-index: 2;
+}
+
+.bush {
+	width: 160px;
+	height: 130px;
+	background: linear-gradient(121deg, #1cac0f, #115e03);
+	border-radius: 50%;
+	right: 0%;
+	bottom: -43%;
+	z-index: 1;
+}
+
+.bush:before {
+	content: ' ';
+	display: inline-block;
+	width: 100px;
+	height: 90px;
+	background: linear-gradient(121deg, #1cac0f, #115e03);
+	border-radius: 50%;
+	right: 73%;
+	bottom: 3%;
+	position: absolute;
+	z-index: 3;
+}
+
+.bush:after {
+	content: ' ';
+	display: inline-block;
+	width: 105px;
+	height: 250px;
+	background: linear-gradient(121deg, #c7e474, #98e844);
+	border-radius: 50%;
+	right: -11%;
+	bottom: -60%;
+	position: absolute;
+	z-index: 4;
+}
+
+.scenery.day {
+	transform: rotateY(-180deg);
+}
