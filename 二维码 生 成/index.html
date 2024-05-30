@@ -1,0 +1,80 @@
+<html>
+<!-- 存放二维码的容器 -->
+<div id='qrcode' style="display: none;"></div>
+<img src="" id="image" style="width: 200px; height: 200px;" alt="">
+<script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
+<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script type="text/javascript" >
+//解决中文乱码问题
+function toUtf8(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for (i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        }
+    }
+    return out;
+}
+//二维码宽高
+var qrcodewidth = 400;
+var qrcodeheight = 400;
+var qrcodeTopOffset = 30;
+//canvas宽高
+var canvaswidth = qrcodewidth;
+var canvasheight = qrcodeheight + qrcodeTopOffset;
+//logo宽高
+var logowidth = 100;
+var logoheight = 100;
+//文字描述位置
+var textleft = qrcodewidth / 2;
+var texttop = 20;
+//logo位置
+var logoleft = (qrcodewidth - logowidth) / 2;
+var logotop = (qrcodeheight - logoheight) / 2 + qrcodeTopOffset;
+
+var qrcode = $('#qrcode').qrcode({
+	render : 'canvas',
+	text : toUtf8("Lisa 大美女呢"),
+	width : qrcodewidth,
+	height : qrcodeheight,
+	background : '#ffffff',
+	foreground : '#000000',
+});
+var canvas = qrcode.find('canvas').get(0);
+var img = new Image();
+img.src = canvas.toDataURL('image/png');
+img.onload = function() {
+	canvas.width = canvaswidth;
+	canvas.height = canvasheight;
+	var ctx = canvas.getContext('2d');
+	//设置画布背景
+	ctx.fillStyle = '#ffffff';
+	ctx.fillRect(0, qrcodeTopOffset, canvas.width, canvas.height);
+	//设置文字样式
+	ctx.fillStyle = '#000000';
+	ctx.font = 'bold ' + 19 + 'px Arial';
+	ctx.textAlign = 'center';
+	//文字描述
+	ctx.fillText("二维码标题", textleft, texttop);
+	//绘制二维码
+	ctx.drawImage(img, 0, qrcodeTopOffset);
+	//设置logo
+	var logo = new Image(logowidth, logoheight);
+	logo.src = '../images/img10.jpg';    //Logo图
+	logo.onload = function() {
+		ctx.drawImage(logo, logoleft, logotop, logowidth, logoheight);
+        document.getElementById('image').src = canvas.toDataURL();
+	}
+}
+</script>
+</html>
