@@ -1,0 +1,15 @@
+{
+  "name": "vue-virtual-scroll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.7.16",
+    "vue-virtual-scroller": "^1.1.2"
+  }
+}
