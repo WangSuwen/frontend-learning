@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.3.0/video-js.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.3.0/video.min.js"></script>
+</head>
+<body>
+
+    <h1>video-js: 视频播放器</h1>
+    <video
+        id="my-player"
+        class="video-js"
+        controls
+        preload="auto"
+        poster="//vjs.zencdn.net/v/oceans.png"
+        data-setup='{}'
+    >
+        <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">
+            supports HTML5 video
+            </a>
+        </p>
+    </video>
+
+    <button id="start">开始录音</button>
+    <button id="end">结束录音</button>
+    <audio controls id="audio" src=""></audio>
+    <script>
+        var options = {};
+        var player = videojs('my-player', options, function onPlayerReady() {
+            videojs.log('Your player is ready!');
+            // In this context, `this` is the player that was created by Video.js.
+            this.play();
+            // How about an event listener?
+            this.on('ended', function() {
+                videojs.log('Awww...over so soon?!');
+            });
+        });
+
+
+
+        var startBtn = document.getElementById('start');
+        var endBtn = document.getElementById('end');
+        var audio = document.getElementById('audio');
+        var chunks = [];
+        var stream;
+        var mediaRecorder;
+        startBtn.addEventListener('click', async () => {
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.addEventListener('dataavailable', (e) => {
+                chunks.push(e.data);
+            })
+            mediaRecorder.start();
+        })
+        endBtn.addEventListener('click', () => {
+            stream.getTracks().forEach(track => track.stop());
+            mediaRecorder.addEventListener('stop', () => {
+                var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+                audio.src = URL.createObjectURL(blob);
+                chunks = [];
+                let url = window.URL.createObjectURL(blob);
+                // 上面这个是创建一个blob的对象连链接，
+                // 然后创建一个链接元素，是属于 a 标签的链接元素，所以括号里才是a，
+                let link = document.createElement("a");
+                link.href = url;
+                // 把上面获得的blob的对象链接赋值给新创建的这个 a 链接
+                link.setAttribute("download", "录音.mp3");
+                // 设置下载的属性（所以使用的是download），这个是a 标签的一个属性
+                // 后面的是文件名字，可以更改
+                link.click();
+            })
+        })
+    </script>
+</body>
+</html>
