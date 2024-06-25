@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://artice-code-1258339218.cos.ap-beijing.myqcloud.com/vuepress/element-index.png
+heroImage: /imgs/img10.jpg
 heroText: Element
 features:
 - title: 一致性 Consistency
