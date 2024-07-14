@@ -2,10 +2,11 @@ const express = require('express')
 const {Server} = require('socket.io');
 const cors = require('cors');
 const path = require('path');
+const { haversineDistance } = require('./utils');
 
 const app = express()
 app.use(cors());
-const port = 3000
+const port = 3989
 const corsOptions = {
 	origin: '*',
 	// methods: ['OPTION', 'GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
@@ -91,6 +92,53 @@ app.get('/report', (req, res) => {
         reportTestSpectrumMapImages: [],
         reportSenceImages: []
     });
+});
+
+function getHeapInfo () {
+    const v8 = require('v8');
+
+    // 查看当前堆内存的使用情况
+    const memoryUsage = process.memoryUsage();
+    console.log('\nMemory Usage:');
+    console.log(`RSS: ${Math.round(memoryUsage.rss / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Heap Total: ${Math.round(memoryUsage.heapTotal / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Heap Used: ${Math.round(memoryUsage.heapUsed / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`External: ${Math.round(memoryUsage.external / 1024 / 1024 * 100) / 100} MB`);
+
+    // 查看当前设置的堆内存限制
+    const heapStatistics = v8.getHeapStatistics();
+    console.log('\nHeap Statistics:');
+    console.log(`Total Heap Size: ${Math.round(heapStatistics.total_heap_size / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Total Heap Size Executable: ${Math.round(heapStatistics.total_heap_size_executable / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Total Physical Size: ${Math.round(heapStatistics.total_physical_size / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Total Available Size: ${Math.round(heapStatistics.total_available_size / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Used Heap Size: ${Math.round(heapStatistics.used_heap_size / 1024 / 1024 * 100) / 100} MB`);
+    console.log(`Heap Size Limit: ${Math.round(heapStatistics.heap_size_limit / 1024 / 1024 * 100) / 100} MB`);
+
+}
+
+// 获取两个经纬度间的距离
+app.get('/jingweidu-juli', (req, res) => {
+
+    // getHeapInfo();
+
+
+    const stationNum = req.query.stationNum || 0;
+    const ajson = require('./lib/lt.json');
+    const towerJson = require('./lib/tower.json');
+    const result = [];
+    towerJson.data.forEach(tower => {
+        ajson.data.forEach(aj => {
+            const distance = haversineDistance(tower[1], tower[0], aj[1], aj[0]);
+            if (distance * 1000 <= 50) {
+                // console.log(distance);
+                result.push(`铁塔：${tower[0]}, ${tower[1]}  - 基站：${aj[0]}, ${aj[1]} 间的距离是： ${distance}`);
+            }
+        });
+        /* const distance = haversineDistance(tower[1], tower[0], ajson.data[stationNum][1], ajson.data[stationNum][0]);
+        distance * 1000 <= 50 && result.push(`铁塔：${tower[0]}，${tower[1]}  - 基站：${ajson.data[stationNum][0]}，${ajson.data[stationNum][1]} 间的距离是： ${distance.toFixed(2)}km`); */
+    });
+    res.json(result);
 });
 
 httpServer.listen(port, () => {
