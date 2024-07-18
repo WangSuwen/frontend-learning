@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100vw" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        #imgContainer {
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+    <rect width="100%" height="100%" fill="white"/>
+    <g id="imgContainer">
+        <image id="img1" xlink:href="https://bsrm.oss-cn-beijing.aliyuncs.com/androidpic/1719379964667_4.jpeg" x="0" y="0"   height="100vh" width="100vw"/>
+        <image id="img2" xlink:href="https://bsrm-dev.oss-cn-beijing.aliyuncs.com/8c7f98562cb199337a483012c940dac3.png" x="0" y="100vh" height="100vh" width="100vw"/>
+        <image id="img3" xlink:href="https://bsrm-dev.oss-cn-beijing.aliyuncs.com/b64af81003b5425e00f53a3752d6013e.jpeg" x="0" y="200vh" height="100vh" width="100vw"/>
+        <image id="img4" xlink:href="https://bsrm-dev.oss-cn-beijing.aliyuncs.com/47612f6de08efdbbf61d9329ca1fdde6.png" x="0" y="300vh" height="100vh" width="100vw"/>
+    </g>
+
+    <script type="text/ecmascript">
+        <![CDATA[
+            let svg = document.documentElement;
+            const imgCount = 4;
+            let startY, currentY, scrollTop = 0, currentScrollY = 0, scrolling = false;
+            const imgContainer = document.getElementById('imgContainer');
+            svg.addEventListener('pointerdown', function(e) {
+                startY = e.clientY;
+                svg.setPointerCapture(e.pointerId);
+            });
+
+            svg.addEventListener('pointermove', function(e) {
+                if (startY !== undefined) {
+                    currentY = e.clientY;
+                    let deltaY = currentY - startY;
+                    if (deltaY < 0 && !scrolling && Math.abs(currentScrollY) < imgCount - 1) {
+                        scrolling = true;
+                        currentScrollY -= 1;
+                        imgContainer.style.transform = 'translateY(' + (currentScrollY * 100) + 'vh)';
+                        setTimeout(() => {
+                            scrolling = false;
+                        }, 500);
+                    } else if (deltaY > 0 && !scrolling && currentScrollY < 0) {
+                        scrolling = true;
+                        currentScrollY += 1;
+                        imgContainer.style.transform = 'translateY(' + (currentScrollY * 100) + 'vh)';
+                        setTimeout(() => {
+                            scrolling = false;
+                        }, 500);
+                    }
+                }
+            });
+        ]]>
+    </script>
+</svg>

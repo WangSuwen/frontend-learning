@@ -1,0 +1,26 @@
+<svg width="100vw" height="100vh" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes slide {
+      0% { transform: translateY(0); }
+      20% { transform: translateY(0); }
+      25% { transform: translateY(-100%); }
+      45% { transform: translateY(-100%); }
+      50% { transform: translateY(-200%); }
+      70% { transform: translateY(-200%); }
+      75% { transform: translateY(-300%); }
+      95% { transform: translateY(-300%); }
+      100% { transform: translateY(0); }
+    }
+
+    .carousel {
+      animation: slide 10s infinite;
+    }
+  </style>
+
+  <g class="carousel">
+    <image href="../../images/img1.jpg" x="0" y="0" width="100vw" height="100vh"/>
+    <image href="../../images/img2.jpg" x="0" y="100vh" width="100vw" height="100vh"/>
+    <image href="../../images/img3.jpg" x="0" y="200vh" width="100vw" height="100vh"/>
+    <image href="../../images/img4.jpg" x="0" y="300vh" width="100vw" height="100vh"/>
+  </g>
+</svg>
