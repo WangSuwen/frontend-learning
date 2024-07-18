@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100vw" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <rect width="100%" height="100%" fill="white"/>
+    <image id="img1" xlink:href="../../images/img1.jpg" x="0" y="0"   height="100vh" width="100vw"/>
+    <image id="img2" xlink:href="../../images/img2.jpg" x="0" y="100vh" height="100vh" width="100vw"/>
+    <image id="img3" xlink:href="../../images/img3.jpg" x="0" y="200vh" height="100vh" width="100vw"/>
+    <image id="img4" xlink:href="../../images/img4.jpg" x="0" y="300vh" height="100vh" width="100vw"/>
+
+    <script type="text/ecmascript">
+        <![CDATA[
+            let svg = document.documentElement;
+            let startY, currentY, scrollTop = 0;
+
+            svg.addEventListener('pointerdown', function(e) {
+                startY = e.clientY;
+                svg.setPointerCapture(e.pointerId);
+            });
+
+            svg.addEventListener('pointermove', function(e) {
+                if (startY !== undefined) {
+                    currentY = e.clientY;
+                    let deltaY = currentY - startY;
+                    let images = document.querySelectorAll('image');
+                    images.forEach(function(img) {
+                        let currentY = parseFloat(img.getAttribute('y'));
+                        img.setAttribute('y', currentY + deltaY);
+                    });
+                }
+            });
+
+            svg.addEventListener('pointerup', function(e) {
+                if (startY !== undefined) {
+                    let deltaY = currentY - startY;
+                    scrollTop += deltaY;
+                    if (scrollTop > 0) scrollTop = 0;
+                    if (scrollTop < -900) scrollTop = -900;
+
+                    let images = document.querySelectorAll('image');
+                    images.forEach(function(img) {
+                        let currentY = parseFloat(img.getAttribute('y')) + deltaY;
+                        img.setAttribute('y', currentY);
+                    });
+
+                    startY = undefined;
+                    svg.releasePointerCapture(e.pointerId);
+                }
+            });
+        ]]>
+    </script>
+</svg>
