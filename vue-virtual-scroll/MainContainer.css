@@ -1,9 +1,9 @@
 .scroll-container {
-    height: 500px;
+    height: 100vh;
     overflow-y: scroll;
 }
 .scroll-container .scroller {
-    height: 100%;
+    height: 70%;
 }
 .user {
     height: 45px;

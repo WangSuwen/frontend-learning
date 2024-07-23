@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100vw" height="100vh" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        #imgContainer {
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+    <rect width="100%" height="100%" fill="white"/>
+    <g id="imgContainer"></g>
+
+    <script type="text/ecmascript">
+        <![CDATA[
+            let svg = document.documentElement;
+            const images = [
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OaPTtr17Uc8TanOszu4FKSYibrGVjO9tmWEjKiaPfDx9uE11ufslUf0gGQ/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OaR4dfskqgX0hziaF9kBh424hSMUZc0h2K8KVFOEuSWnNI94m76MCGCbw/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OaNEVfII2JJXCguO3ZJpaT8IM1371hOc7cjuZINfZtTonzISPoraEksA/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OaluD1rsicRMojfDZqJJlU72IT0Ipgoiavjk0GWu68HM8kQBZXdyHgJ0MA/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1Oa3AHvuFBBRwBIZzepq8BdMAyRrgHxvbWV6OFR2O7k26RJ9fPTkGcp8w/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OaaFiawaY9EXDAH90vbzUhdvLL7ZgcNSJe1icXsIad2ws5K4bz1l486urA/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OauicpvAypvrCIU3uG0ibwXsqziaW1FUJFmsNfuEl17RTeLslu2fWUibyUCQ/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1Oaibwn9p0ZibcoKKfpEpQxL7r5S27Y8ZwcRPZniaVJFAIicJKjy1xYSCcibIw/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OakxnnnMbekCtnamx3s0ibUHE3HDyy6F4QFFT9Rc5Gb3GncyXHiaL8pIcA/640',
+                'https://mmbiz.qpic.cn/mmbiz_png/aZ0KduFCHaFjHelOXt8F145fLWgxJ1OaTClg6aSNmKY2YsuJocroKvtdiaEXXhJGAf3cADQEEibCVblB7HNpos3g/640'
+            ];
+            const imgContainer = document.getElementById('imgContainer');
+            for (let i = 0; i < images.length; i++) {
+                const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+                img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', images[i]);
+                img.setAttribute('x', '0');
+                img.setAttribute('y', i * 100 + 'vh');
+                img.setAttribute('height', '100vh');
+                img.setAttribute('width', '100vw');
+                imgContainer.appendChild(img);
+            }
+            let startY, currentY, scrollTop = 0, currentScrollY = 0, scrolling = false;
+            
+            svg.addEventListener('pointerdown', function(e) {
+                startY = e.clientY;
+                svg.setPointerCapture(e.pointerId);
+            });
+
+            svg.addEventListener('pointermove', function(e) {
+                if (startY !== undefined) {
+                    currentY = e.clientY;
+                    let deltaY = currentY - startY;
+                    if (deltaY < 0 && !scrolling && Math.abs(currentScrollY) < images.length - 1) {
+                        scrolling = true;
+                        currentScrollY -= 1;
+                        imgContainer.style.transform = 'translateY(' + (currentScrollY * 100) + 'vh)';
+                        setTimeout(() => {
+                            scrolling = false;
+                        }, 500);
+                    } else if (deltaY > 0 && !scrolling && currentScrollY < 0) {
+                        scrolling = true;
+                        currentScrollY += 1;
+                        imgContainer.style.transform = 'translateY(' + (currentScrollY * 100) + 'vh)';
+                        setTimeout(() => {
+                            scrolling = false;
+                        }, 500);
+                    }
+                }
+            });
+        ]]>
+    </script>
+</svg>
