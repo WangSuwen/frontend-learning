@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #edeeed;
+        }
+        .abc {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            background: transparent;
+            border-radius: 59% 41% 29% 71% / 49% 55% 45% 51%;
+            box-shadow: inset 10px 10px 10px rgba(0,0,0,0.05),
+                        15px 25px 10px rgba(0,0,0,0.1),
+                        15px 20px 10px rgba(0,0,0,0.05),
+                        inset -10px -10px 15px rgba(255,255,255,0.9);
+        }
+        .abc::before {
+            position: absolute;
+            content: '';
+            top: 25px;
+            left: 35px;
+            width: 20px;
+            height: 20px;
+            background: #FFFFFF;
+            display: block;
+            border-radius: 42% 58% 37% 63% / 40% 43% 57% 60%;
+        }
+        .abc::after {
+            position: absolute;
+            content: '';
+            top: 25px;
+            left: 65px;
+            width: 10px;
+            height: 10px;
+            background: #FFFFFF;
+            border-radius: 57% 43% 37% 63% / 48% 37% 63% 52%;
+        }
+    </style>
+</head>
+<body>
+    <div class="abc"></div>
+</body>
+</html>
