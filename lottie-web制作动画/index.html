@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .svg-container {
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+        }
+        </style>
+</head>
+<body>
+    <!-- <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+        <dotlottie-player
+            src="https://lottie.host/48efd0b0-d08e-4e16-9eed-7f64694075de/z2wbMWwmfb.json"
+            background="transparent"
+            style="width: 100px; height: 100px;"
+            speed="0.5"
+            loop
+            autoplay
+        ></dotlottie-player>
+    </script> -->
+
+    <div style="display: flex; gap: 20px;">
+        <div
+            id="svgContainer"
+            class="svg-container"
+            onmouseenter="mouseEnter()"
+            onmouseleave="mouseLeave()"
+        ></div>
+        <div
+            id="svgContainer2"
+            class="svg-container"
+            onmouseenter="mouseEnter2()"
+            onmouseleave="mouseLeave2()"
+        ></div>
+    </div>
+    <script type="module">
+        import bodymovin from './bodymovin.min.5.12.2.js';
+        /* Shapes */
+        var svgContainer = document.getElementById('svgContainer');
+        window.animItem = bodymovin.loadAnimation({
+            autoplay: false,
+            wrapper: svgContainer,
+            animType: 'svg',
+            loop: false,
+            speed: 0.5,
+            path: './开锁.json'
+        });
+
+        var svgContainer2 = document.getElementById('svgContainer2');
+        window.animItem2 = bodymovin.loadAnimation({
+            autoplay: false,
+            wrapper: svgContainer2,
+            animType: 'svg',
+            loop: false,
+            path: './仿生开关.json'
+        });
+    </script>
+    <script>
+        function mouseEnter() {
+            animItem.playSegments([0, 4], true);
+        }
+        function mouseLeave() {
+            animItem.playSegments([3, 0], true);
+        }
+        function mouseEnter2() {
+            animItem2.setSpeed(2);
+            animItem2.playSegments([0, 80], true);
+        }
+        function mouseLeave2() {
+            animItem2.setSpeed(2);
+            animItem2.playSegments([79, 0], true);
+        }
+    </script>
+</body>
+</html>
