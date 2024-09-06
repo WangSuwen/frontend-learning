@@ -1,15 +1,22 @@
 <template>
 	<div class="home">
-		<h1>水平滚动时间轴</h1>
-		<horizontalTimelineVue />
+		<router-link to="/horizontal-time-line">水平滚动时间轴</router-link>
+		<router-link to="/swipper">swipper</router-link>
 	</div>
 </template>
 
 <script>
-import horizontalTimelineVue from '../components/horizontal/index.vue';
 
 export default {
-	name: 'HomeView',
-	components: { horizontalTimelineVue }
+	name: 'HomeView'
 };
 </script>
+<style lang="scss" scoped>
+    .home {
+        display: flex;
+        gap: 20px;
+        a {
+            font-size: 16px;
+        }
+    }
+</style>

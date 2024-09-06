@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import SwipperView from '../views/SwipperView.vue';
+import HorizontalTimeLine from '../views/HorizontalTimeLine.vue';
 
 Vue.use(VueRouter);
 
@@ -9,6 +11,16 @@ const routes = [
 		path: '/',
 		name: 'home',
 		component: HomeView
+	},
+	{
+		path: '/horizontal-time-line',
+		name: 'horizontal-time-line',
+		component: HorizontalTimeLine
+	},
+	{
+		path: '/swipper',
+		name: 'swipper',
+		component: SwipperView
 	},
 	{
 		path: '/about',
