@@ -1,0 +1,42 @@
+$breakpoints: (
+    'phone': (320px, 480),
+    'pad': (481px, 768px),
+    'notebook': (769px, 1024px),
+    'desktop': (1025px, 1280px),
+    'desktop-lg': 1281px
+);
+
+@mixin respond-to($breakpoint) {
+    $bp: map-get($breakpoints, $breakpoint);
+    @if type-of($bp) == 'list' {
+        $min: nth($bp, 1);
+        $max: nth($bp, 2);
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @media (min-width: $bp) {
+            @content;
+        }
+    }
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    @include respond-to('phone') {
+        height: 60px;
+    }
+    @include respond-to('pad') {
+        height: 80px
+    }
+    @include respond-to('notebook') {
+        height: 100px
+    }
+    @include respond-to('desktop') {
+        height: 120px
+    }
+    @include respond-to('desktop-lg') {
+        height: 140px
+    }
+}
