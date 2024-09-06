@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            height: 500vh;
+            /* width: 19.2rem; */
+            position: relative;
+            overflow: hidden;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background: url(https://zxsj.wanmei.com/images/cover231129/bg.jpg) center top no-repeat;
+            background-size: 100%;
+        }
+    </style>
+    <script>
+        // TODO: rem 自适应屏幕宽度，以100px为基准，1920px为标准屏幕尺寸，即1920px时，1rem=100px
+        function Spring(win, baseNum, baseSize) {
+            var doc = win.document;
+            var docEl = doc.documentElement;
+            var tid;
+
+            function refreshRem() {
+                var width = docEl.getBoundingClientRect().width;
+                docEl.style.fontSize = baseNum * (width / baseSize) + 'px';
+            }
+            win.addEventListener('resize', function () {
+
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }, false);
+            refreshRem();
+        }
+        var spring = new Spring(window, 100, 1920);
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
