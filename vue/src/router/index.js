@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import SwipperView from '../views/SwipperView.vue';
 import HorizontalTimeLine from '../views/HorizontalTimeLine.vue';
+import RightClick from '../views/RightClick.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
 		path: '/swipper',
 		name: 'swipper',
 		component: SwipperView
+	},
+	{
+		path: '/right-click',
+		name: 'RightClick',
+		component: RightClick
 	},
 	{
 		path: '/about',
