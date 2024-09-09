@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!-- 图片放大预览插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+    <style>
+        img {
+            width: 400px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section" id="section1">
+            <img src="../images/img1.jpg" alt="" data-zoomable>
+        </div>
+        <div class="section" id="section2">
+            <div class="slide" id="slide2-1">
+                <img src="../images/img2.jpg" alt="" data-zoomable>
+            </div>
+            <div class="slide" id="slide2-2">
+                <img src="../images/img3.jpg" alt="" data-zoomable>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mediumZoom('[data-zoomable]');
+        });
+        
+    </script>
+</body>
+</html>
