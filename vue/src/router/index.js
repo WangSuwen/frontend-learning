@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue';
 import SwipperView from '../views/SwipperView.vue';
 import HorizontalTimeLine from '../views/HorizontalTimeLine.vue';
 import RightClick from '../views/RightClick.vue';
+import FourDirectionCar from '../views/FourDirctionCar.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
 		path: '/right-click',
 		name: 'RightClick',
 		component: RightClick
+	},
+	{
+		path: '/four-direction-car',
+		name: 'FourDirectionCar',
+		component: FourDirectionCar
 	},
 	{
 		path: '/about',
