@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css">
+    <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        /* Only necessary with horizontal scrolling */
+        /* html[data-scroll-orientation="horizontal"] {
+            body {
+                width: fit-content;
+            }
+            [data-scroll-container] {
+                display: flex;
+            }
+        } */
+
+        .flex {
+            display: flex;
+        }
+        .f-jc-c {
+            justify-content: center;
+        }
+        .f-jc-sb {
+            justify-content: space-between;
+        }
+        .f-ai-c {
+            align-items: center;
+        }
+        .f-jc-sa {
+            justify-content: space-around;
+        }
+        .f-jc-fs {
+            justify-content: flex-start;
+        }
+        .f-jc-fe {
+            justify-content: flex-end;
+        }
+        .f-ai-c {
+            align-items: center;
+        }
+        h1 {
+            font-size: 80px;
+            font-weight: 600;
+        }
+        .s1 {
+            margin-inline-start: auto;
+            margin-inline-end: auto;
+            width: 87.5vw;
+            max-width: 1680px;
+        }
+        .s1 p {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .video-container {
+            height: 80vh;
+            min-height: 680px;
+            max-width: 1920px;
+            max-height: 1260px;
+            margin: 0 auto;
+
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .welcome-video {
+            object-fit: cover;
+            position: relative;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(100% + 2px);
+        }
+        .section-content-responsive {
+            margin: 0 auto;
+            width: 87.5vw;
+            max-width: 1680px;
+        }
+        .section-content-responsive h1 {
+            margin-bottom: 0 !important;
+        }
+        .section-content-responsive .gx {
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all .5s;
+        }
+        .section-content-responsive .gx:hover {
+            transform: scale(1.02);
+        }
+        .section-content-responsive .gx .mac-edu-college-students-image {
+            width: 1680px;
+            height: 580px;
+            border-radius: 28px;
+            background-size: 1680px;
+            background-image: url(https://www.apple.com.cn/mac/includes/education-college-students/mac-edu-college-students/images/mac_for_students__danq18u374k2_xlarge.jpg);
+        }
+        .fn-img-swiper {
+            position: relative;
+            padding-bottom: 50px;
+            margin: 0 auto;
+            width: 87.5vw;
+            max-width: 1680px;
+        }
+        .fn-img-swiper .swiper-wrapper {
+            display: flex;
+            gap: 0 20px;
+        }
+        .fn-img-swiper .swiper-wrapper .swiper-slide{
+            border-radius: 28px;
+            width: 405px;
+            height: 748px;
+            overflow: hidden;
+        }
+        .fn-img-swiper .swiper-navigation {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            width: 120px;
+        }
+        .fn-img-swiper .swiper-navigation .swiper-button-prev,
+        .fn-img-swiper .swiper-navigation .swiper-button-next {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, .5);
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            /* transform: rotate(180deg); */
+        }
+        .fn-img-swiper .swiper-navigation .swiper-button-prev::after,
+        .fn-img-swiper .swiper-navigation .swiper-button-next::after {
+            font-size: 20px;
+        }
+        .clearable {
+            height: 20vh;
+            width: 100vw;
+            margin: 50px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <main data-scroll-container>
+        <section data-scroll-section>
+            <div class="flex f-ai-c f-jc-sb s1">
+                <h1>Mac</h1>
+                <p>
+                    你想得出，
+                    <br>
+                    Mac 助你做得到。
+                </p>
+            </div>
+            <div class="video-container">
+                <video
+                    class="welcome-video"
+                    src="https://www.apple.com.cn/105/media/us/mac/family/2024/60fc0159-4236-4a03-8534-f5ba07e538c5/anim/welcome/xlarge.mp4"
+                    muted
+                    loop
+                    autoplay
+                    controls
+                ></video>
+            </div>
+        </section>
+        <section id="gxs">
+            <div class="section-content-responsive">
+                <div class="flex f-ai-c f-jc-sb s1" style="padding-bottom: 40px;">
+                    <h1 data-scroll-section>
+                        <span data-scroll-speed="3" data-scroll-position="top">高</span>
+                        <span data-scroll-speed="5" data-scroll-position="top">校</span>
+                        <span data-scroll-speed="2" data-scroll-position="top">生</span>
+                        <span data-scroll-speed="1" data-scroll-position="top">用</span>
+                        <span data-scroll-speed="4" data-scroll-position="top">M</span>
+                        <span data-scroll-speed="6" data-scroll-position="top">ac</span>
+                    </h1>
+                </div>
+                <div data-scroll-section class="gx">
+                    <div  data-scroll-speed="6" data-scroll-position="top" class="mac-edu-college-students-image"></div>
+                </div>
+            </div>
+        </section>
+        <section data-scroll-section>
+            <header class="s1">
+                <h1>来了解一下Mac</h1>
+            </header>
+            <div class="fn-img-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/v/mac/home/bz/images/overview/consider/mac_ease__bvgkz2zdltxy_xlarge.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/v/mac/home/bz/images/overview/consider/mac_performance__dh5hyac1zf8m_xlarge.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/mac/home/images/overview/consider/mac_iphone__gh1tblkt6bqm_xlarge.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/mac/home/images/overview/consider/mac_compatibility__cu59oukz81ci_xlarge.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/v/mac/home/bz/images/overview/consider/mac_security__gfwda10khdym_xlarge.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/v/mac/home/bz/images/overview/consider/mac_durability__epiwcuk7zkeq_xlarge.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.apple.com.cn/v/mac/home/bz/images/overview/consider/mac_values__c9gck9qi4kia_xlarge.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-navigation flex f-ai-c f-jc-sb">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+        <div class="clearable"></div>
+    </main>
+    
+    <script>
+        var swiper = new Swiper(".fn-img-swiper", {
+            slidesPerView: 4,
+            // centeredSlides: true,
+            spaceBetween: 30,
+            // grabCursor: true,
+            initialSlide: 0,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            }
+        });
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true
+            /* lenisOptions: {
+                wrapper: window,
+                content: document.documentElement,
+                lerp: 0.1,
+                duration: 1.2,
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                smoothTouch: false,
+                wheelMultiplier: 1,
+                touchMultiplier: 2,
+                normalizeWheel: true,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+            }, */
+        });
+    </script>
+</body>
+</html>

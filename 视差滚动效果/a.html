@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locomotive Scroll Example</title>
+  <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+    }
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+    <div data-scroll-container>
+        <section data-scroll-section>
+            <!-- <h1 data-scroll data-scroll-speed="2">Smooth Scroll with Locomotive</h1> -->
+            <span data-scroll data-scroll-speed="3" data-scroll-position="top">高</span>
+            <span data-scroll data-scroll-speed="5" data-scroll-position="top">校</span>
+            <span data-scroll data-scroll-speed="2" data-scroll-position="top">生</span>
+            <span data-scroll data-scroll-speed="1" data-scroll-position="top">用</span>
+            <span data-scroll data-scroll-speed="4" data-scroll-position="top">M</span>
+            <span data-scroll data-scroll-speed="6" data-scroll-position="top">ac</span>
+        </section>
+        <section data-scroll-section>
+            <span data-scroll data-scroll-speed="3" data-scroll-position="top">高</span>
+            <span data-scroll data-scroll-speed="5" data-scroll-position="top">校</span>
+            <span data-scroll data-scroll-speed="2" data-scroll-position="top">生</span>
+            <span data-scroll data-scroll-speed="1" data-scroll-position="top">用</span>
+            <span data-scroll data-scroll-speed="4" data-scroll-position="top">M</span>
+            <span data-scroll data-scroll-speed="6" data-scroll-position="top">ac</span>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+    <script>
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true
+        });
+    </script>
+</body>
+</html>
