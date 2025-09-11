@@ -7,7 +7,7 @@ function smear(img) {
     context.drawImage(img, 0, 0);
     var pixels = context.getImageData(0, 0, img.width, img.height);
 
-    var worker = new Worker('sMEARwORKER.js');
+    var worker = new Worker('SmearWorker.js');
     worker.postMessage(pixels);
 
     worker.onmessage = function(event) {
