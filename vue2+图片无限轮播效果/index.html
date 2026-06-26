@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <infinite-carousel
+            :images="bannerList"
+            width="800px"
+            height="360px"
+            :autoplay="false"
+            :interval="3000"
+        />
+    </div>
+    <script type="module">
+        import InfiniteCarousel from './InfiniteCarousel.js';
+        new Vue({
+            el: '#app',
+            components: {
+                InfiniteCarousel
+            },
+            data: {
+                bannerList: [
+                    './images/1015-800x360.jpg',
+                    './images/1016-800x360.jpg',
+                    './images/1018-800x360.jpg',
+                    './images/1020-800x360.jpg',
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
