@@ -39,7 +39,7 @@ const data = [
 	{ id: 24, content: '北朝：西魏', time: '（535～556）' },
 	{ id: 25, content: '北朝：北齐', time: '（550～557）' },
 	{ id: 26, content: '北朝：北周', time: '（557～581）' },
-	{ id: 27, content: '随', time: '581～618（37年）' },
+	{ id: 27, content: '隋', time: '581～618（37年）' },
 	{ id: 28, content: '唐', time: '618～907（200余年）' },
 	{ id: 29, content: '五代', time: '907～960（53年）' },
 	{ id: 30, content: '后梁', time: '（907～923)' },

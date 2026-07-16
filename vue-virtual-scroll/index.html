@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="MainContainer.css">
+    <link rel="stylesheet" href="index.css">
+    <!-- <link rel="stylesheet" href="MainContainer.css"> -->
     <link rel="stylesheet" href="./node_modules/vue-virtual-scroller/dist/vue-virtual-scroller.css">
     <script src="./node_modules/vue/dist/vue.min.js"></script>
     <script src="./node_modules/vue-virtual-scroller/dist/vue-virtual-scroller.min.js"></script>
 </head>
 <body>
-    <div id="app">
-        <h1><i style="color: rgb(245,192,78);">TODO:</i> 这些是根组件中的内容</h1>
+    <div id="app" class="level-1">
+        <div id="level1" class="line top" style="--level: '一级容器'"></div>
+        <h1 style="margin-top: 70px;"><i style="color: rgb(245,192,78);">TODO:</i> 这些是根组件中的内容</h1>
         <h1>{{ name }}</h1>
         <h2>889900</h2>
+        <div class="line bottom"></div>
         <main-container />
     </div>
     <script type="module">

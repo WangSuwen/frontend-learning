@@ -1,9 +1,10 @@
 import Subsub from "./Subsub.js";
 
+
 export default Vue.component('ComponentContainer', {
     component: { 
         DynamicScroller: VueVirtualScroller.DynamicScroller,
-        subsub: Subsub
+        Subsub
     },
     data () {
         return {
@@ -16,9 +17,11 @@ export default Vue.component('ComponentContainer', {
         }
     },
     template: /*html*/`
-        <div class="scroll-container">
+        <div class="scroll-container level-2">
+            <link rel="stylesheet" href="MainContainer.css">
+            <div class="line top" style="--level: '二级容器'"></div>
             <h2>Hello World -- <i style="color: deeppink;">这里是子组件</i></h2>
-            <subsub />
+            <Subsub />
             <DynamicScroller
                 class="scroller"
                 :items="list"
@@ -31,6 +34,7 @@ export default Vue.component('ComponentContainer', {
                     {{ item.name }}<h1> - {{item.id}}</h1>
                 </div>
             </DynamicScroller>
+            <div class="line bottom"></div>
         </div>
     `
 });

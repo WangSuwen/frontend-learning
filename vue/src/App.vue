@@ -1,8 +1,19 @@
 <template>
 	<div id="app">
-		<router-view />
+		<!-- <router-view /> -->
+		<DocumentReadView />
 	</div>
 </template>
+
+<script>
+import DocumentReadView from './views/DocumentReadView.vue';
+export default {
+	name: 'App',
+	components: {
+		DocumentReadView
+	}
+};
+</script>
 
 <style>
 #app {
