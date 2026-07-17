@@ -1,8 +1,8 @@
 onmessage = function(e) {
-    if (typeof e.data !== 'number') {
+    /* if (typeof e.data !== 'number') {
         console.error('Expected number of iterations');
         return;
-    }
+    } */
     postMessage(smear(e.data));
 }
 
