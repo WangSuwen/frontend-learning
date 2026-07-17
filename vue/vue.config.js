@@ -26,7 +26,15 @@ module.exports = defineConfig({
 		}
 
 		// 3. 别名配置 (调整核心)
-		config.resolve = {
+		config.resolve = {// A. 针对 Webpack 5+ 的 polyfill 回退配置
+			fallback: {
+				"fs": false,           // 告诉 Webpack 不要解析 fs
+				"path": false,         // 如果报错报到 path，也可以一并设为 false
+				"fs/promises": false,  // 明确对 fs/promises 设为 false// 1. 强行将 Node 的 'util' 模块重定向到我们刚才安装的纯前端 util npm包
+				"util": require.resolve("util/"), 
+				// 🛠️ 1. 在回退机制中将 zlib 重定向到浏览器版 zlib
+				"zlib": require.resolve("browserify-zlib")
+			},
 			alias: {
 				'@file-viewer/core/assets$': resolvePackageFile('@file-viewer/core', 'dist/assets.js'),
 				'@file-viewer/core/browser$': resolvePackageFile('@file-viewer/core', 'dist/browser.js'),

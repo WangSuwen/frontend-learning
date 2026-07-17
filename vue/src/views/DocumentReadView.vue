@@ -8,12 +8,15 @@
 			</div>
 		</div>
 		<div style="height: calc(100vh - 40px)">
-			<file-viewer :file="file" :options="options" />
+			<file-viewer ref="viewerRef" :file="file" :options="options" />
 		</div>
 	</div>
 </template>
 <script>
-import officePreset from '@file-viewer/preset-office';
+import officePreset from '@file-viewer/preset-office'; // office文档预览
+import lightPreset from '@file-viewer/preset-lite'; // 图片预览
+import imageRenderer from '@file-viewer/renderer-image'; // 图片预览渲染器
+import engineeringPreset from '@file-viewer/preset-engineering'; // 工程图预览
 
 export default {
 	name: 'DocumentReadView',
@@ -22,9 +25,11 @@ export default {
 		return {
 			file: undefined,
 			zoom: 1,
+			isEditing: false,
 			options: {
 				theme: 'light',
-				preset: officePreset,
+				preset: [officePreset, engineeringPreset, lightPreset, imageRenderer],
+				// renderers: lightPreset,
 				rendererMode: 'replace',
 				toolbar: { position: 'bottom-right' },
 				watermark: { text: '内部预览', opacity: 0.14 },
