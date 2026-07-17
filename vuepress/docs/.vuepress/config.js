@@ -1,5 +1,5 @@
 module.exports = {
-    base: "/vuepress-doc.github.io/", // 这个是给github.io 用的
+    base: "/vuepress/docs/.vuepress/dist/", // 这个相当于 vue.config.js 中的 publicPath 配置
     theme: '',
     title: 'VuePress + Element',
     description: 'VuePress搭建Element的组件库文档教程示例代码',

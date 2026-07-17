@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "build": "npx cross-env NODE_OPTIONS=--openssl-legacy-provider vuepress build docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "element-plus": "^2.7.6",
+    "async-validator": "^4.2.5",
     "element-ui": "^2.15.14",
     "vuepress": "^1.9.10",
     "vuepress-plugin-demo-container": "^0.2.0"

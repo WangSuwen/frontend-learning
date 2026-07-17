@@ -1,24 +1,4 @@
-# vue
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+水平滚动时间轴
+自定义右键
+自动滚动数据列表 + 动态添加新数据（海量数据时，dom数量也能保持少量）
+文档阅读取

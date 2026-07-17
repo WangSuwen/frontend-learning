@@ -1,16 +1,16 @@
 <template>
 	<div id="app">
-		<!-- <router-view /> -->
-		<DocumentReadView />
+		<router-view />
+		<!-- <DocumentReadView /> -->
 	</div>
 </template>
 
 <script>
-import DocumentReadView from './views/DocumentReadView.vue';
+// import DocumentReadView from './views/DocumentReadView.vue';
 export default {
 	name: 'App',
 	components: {
-		DocumentReadView
+		// DocumentReadView
 	}
 };
 </script>
